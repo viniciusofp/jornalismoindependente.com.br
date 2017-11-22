@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<div class="row">
+		<div id="paginaHeader"  class="col-md-12">
+			<h1 style="display: inline">{{midia.name}}</h1>
+			<hr>
+			<form class="form-inline">
+				<div class="form-group">
+					<label>Faça uma nova busca:</label>
+					<input ng-model="busca.buscatermo" autocomplete="off" type="text" class="form-control" placeholder="Buscar">
+					<button type="submit" ng-click="searchSubmit();" class="btn"><i  class="fa fa-search"></i></button>
+				</div>			
+			</form>
+		</div>
+	</div>
+	<post-row-busca></post-row-busca>
+</div>

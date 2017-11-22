@@ -1,0 +1,44 @@
+<div id="post-row" class="row clearfix" style="position: relative;">
+	<section class="col-sm-12">
+		<div id="post-nav">
+			<label style=" margin: 19px 10px 17px;">Página {{paginaAtual}}</label>
+			<div id="next-page" class=""  ng-click="proxPag()">
+				<a><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+			</div>
+			<div id="previous-page" class="" ng-if="paginaAtual > 1" ng-click="prevPag()">
+				<a><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+			</div>
+		</div>		
+		<h3 class="pull-left" style=" margin: 16px 0px 0px; opacity: 0">a</h3>
+		
+	</section>
+	<div class="col-sm-6 col-lg-4 post-wrapper" ng-repeat="post in ultimosPosts | orderBy:'-date' track by $index">
+		<div class="post-container">
+			<p class="chapeu"><small><a href="/#/{{post.midia.slug}}"><strong><i class="fa fa-hand-o-right" aria-hidden="true"></i> {{post.midia.name}}</strong></a> | <span ng-bind-html="post.date | date"></span></small></p>
+			<div class="post-img" ng-if="($index + 8) % 10 == 0 && post.featuredmedia.medium.source_url" >
+				<img  ng-src="{{post.featuredmedia.medium.source_url}}" alt="">
+			</div>
+				
+			<a target="_blank" ng-href="{{post.link}}"><h3  class="media-heading" ng-bind-html="post.title.rendered"></h3></a>
+			<p class="resumo">{{post.resumo}}</p>
+			<p  ng-if="($index + 8) % 10 == 0 && ! post.featuredmedia.medium.source_url" ng-bind-html="post.resumo"></p>
+			<h6><i class="fa fa-clock-o" aria-hidden="true"></i> Tempo estimado de leitura: {{post.readtime}} min.</h6>
+		</div>
+		<div ng-if="($index) % 10 == 0" class="bg-img" style="background-image: url('{{post.featuredmedia.medium.source_url}}')"></div>
+		<div ng-if="($index + 9) % 10 == 0" class="bg-img" style="background-image: url('{{post.featuredmedia.medium.source_url}}')"></div>
+
+		<div ng-if="($index) % 10 == 0 && ! post.featuredmedia.medium.source_url" class="bg-img" style="filter: none; moz-filter: none;"></div>
+		<div ng-if="($index + 9) % 10 == 0 && ! post.featuredmedia.medium.source_url" class="bg-img" style="filter: none; moz-filter: none;"></div>
+	</div>
+
+</div>
+
+<div id="loading"  style="width: 100%; text-align: center; padding: 60px 30px 80px;">
+	<imgsrc="grid.svg" width="200" alt="">
+</div>
+
+<script>
+	var sticky = new Waypoint.Sticky({
+	  element: $('#post-nav')[0]
+	})
+</script>

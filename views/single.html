@@ -1,0 +1,27 @@
+<div class="container-fluid" style="background: #222222">
+
+		<div class="row">
+			<div class="col-sm-5 col-md-5" style="padding: 0">
+				<a href="/#/mapa"><button id="mapaCompleto" class="btn btn-warning">MAPA COMPLETO</button></a>
+				<div id="map" style="height: 300px; width: 100%"></div>
+			</div>
+			<div id="paginaHeaderSingle" class="col-sm-7 col-md-7">
+				<h1 class="cor1">
+					{{midia.name}}
+				</h1>
+				<p class="lead" style="color: white; max-width: 420px;">{{midia.linhafina}}</p>
+				<button ng-click="saibaMais()" class="btn btn-default">Saiba Mais</button>
+			</div>
+		</div>
+
+</div>
+	
+<div class="container-fluid">
+	<div class="col-md-8 col-md-offset-2 clearfix">
+		<div class="saibamais jumbotron hidden">
+			<p ng-bind-html="midia.description"></p>
+			<h4><a href="{{midia.url}}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i> {{midia.url}}</a></h4>
+		</div>
+	</div>
+	<post-row></post-row>
+</div>

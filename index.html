@@ -1,0 +1,175 @@
+<!doctype html>
+<html ng-app="wpReader">
+	<head>
+		<base href="/">
+		<meta charset="UTF-8">
+		<!-- Global Site Tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75131519-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments)};
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-75131519-2');
+		</script>
+
+		<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1.0">
+
+		<meta charset="utf8">
+		<title>jornalismoindependente</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKNJZFLHzsa-6g3VeeM0PTfPhC1CETlZM"></script>
+		<script src="dist/scripts.min.js"></script>
+
+	</head>
+	<body ng-controller="MainCtrl">
+		<header id="wp-reader" class="fixed">
+			<nav class="container-fluid">
+				<div id="nav-left">
+					<ul>
+						<li class="">
+							<a id="sections-btn" href="/#/" ng-click="closeMenu()">
+								<i class="fa fa-home"></i></h4>
+							</a>
+						</li>
+						<li class="sections-trigger">
+							<a id="sections-btn">
+								<i class="fa fa-bars section" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li class="search-form-item hidden-xs">
+							<form id="search-form" class="search" ng-submit="searchSubmit()">
+								<input id="search-field" ng-model="busca.buscatermo" autocomplete="off" name="s" type="text" class="form-control closed" placeholder="Buscar">
+								<i id="search-btn" class="fa fa-search closed"></i>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<div id="sections-nav">
+			<div id="nav-inner">
+				<div class="visible-xs section-menu">
+	                <form id="nav-search-mobile">
+	                    <input type="text" placeholder="Buscar" ng-model="busca.buscatermo" autocomplete="off">
+	                    <button type="submit" class="fa fa-search" ng-click="searchSubmit(); closeMenu();"></button>
+	                </form>
+	            </div>
+				<ul class="section-menu">
+					<li class="nested">
+						<a><strong>Todos os sites</strong></a>
+						<i class="fa fa-plus main-nav-angle"></i>
+						<ul class="drop-menu">
+							<li ng-repeat="site in ::sites" class="site-item" ng-click="closeMenu()">
+								<a href="/#/{{::site.slug}}" ng-class="midiaClass(site)">{{::site.name}}</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nested">
+						<a>Categorias</a>
+						<i class="fa fa-plus main-nav-angle"></i>
+						<ul class="drop-menu">
+							<li class="site-item">
+								<a href="/#/categoria/politica">Cidadania e Política</a>
+							</li>
+							<li class="site-item">
+								<a href="/#/categoria/cultura">Cultura e Arte</a>
+							</li>
+							<li class="site-item">
+								<a href="/#/categoria/meioambiente">Meio Ambiente</a>
+							</li>
+							<li class="site-item">
+								<a href="/#/categoria/genero">Gênero</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li class="site-item">
+						<a href="/#/mapa">Mapa</a>
+					</li>
+					<!-- <li class="site-item">
+						<a href="/#/">Sobre</a>
+					</li>
+					<li class="site-item">
+						<a href="/#/">Contato</a>
+					</li> -->
+				</ul>
+				<div id="site-attribution-off-canvas-menu">
+					<p>Desenvolvido por <a href="https://viniciusofp.com.br"><strong>viniciusofp</strong></a></p>
+				</div>		
+			</div>
+		</div>
+		<div id="navlayer"></div>
+		<a name="top"></a>
+		<ng-view></ng-view>
+		<div id="footer-wrapper" class="container-fluid">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-12">
+						<a href="/#/"><h3>jornalismo<br class="visible-xs"><span style="font-weight: 500">independente.com.br</span></h3></a>
+						<hr>
+					</div>
+					<div class="col-sm-12">
+						<ul class="list-inline">
+							<li ng-repeat="site in sites | orderBy: 'name'"><a href="/#/{{site.slug}}">{{site.name}}</a></li>
+						</ul>
+								
+					</div>
+				</div>
+			</div>
+		</div>
+		<script async
+		  src="js/waypoints.min.js"></script>
+		<script async>
+
+			$('.sections-trigger').click(function() {
+				$('#sections-nav').toggleClass('navOpen');
+				$('#wrapper').toggleClass('navOpen');
+				$('#nav-inner').toggleClass('navOpen');
+				$('#navlayer').toggleClass('navOpen');
+			});
+			$('#navlayer').click(function() {
+				$('#sections-nav').toggleClass('navOpen');
+				$('#wrapper').toggleClass('navOpen');
+				$('#nav-inner').toggleClass('navOpen');
+				$('#navlayer').toggleClass('navOpen');
+			});
+			$('li.site-item a').click(function() {
+				$('#sections-nav').toggleClass('navOpen');
+				$('#wrapper').toggleClass('navOpen');
+				$('#nav-inner').toggleClass('navOpen');
+				$('#navlayer').toggleClass('navOpen');
+			});
+
+			$('#search-btn').click(function() {
+				$(this).toggleClass('closed').toggleClass('opened');
+				$('#search-field').toggleClass('closed').toggleClass('opened');
+			});
+
+			$( ".section-menu > li.nested").hover(
+			  function(e) {
+			    $( this ).addClass( "hover" );
+			  }, function() {
+			    $( this ).removeClass( "hover" );
+			  }
+			 );
+
+			$( ".section-menu li.nested a").hover(
+			  function(e) {
+			    $( this ).addClass( "hover" );
+			    $( this ).parent('.section-menu > li').addClass( "unhover" );
+			  }, function() {
+			    $( this ).removeClass( "hover" );
+			    $( this ).parent('.section-menu > li').removeClass( "unhover" );
+			  }
+			 );
+
+			$( ".section-menu > li.nested").click(function() {
+				$(this).children(".drop-menu").toggleClass('opened');
+				$(this).children("i").toggleClass('fa-plus fa-minus');
+			});
+
+		</script>
+		
+	</body>
+</html>

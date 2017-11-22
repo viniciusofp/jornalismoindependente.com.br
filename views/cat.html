@@ -1,0 +1,57 @@
+<div class="container-fluid">
+	<div class="row">
+		<div id="paginaHeader"  class="col-md-12">
+			<h1>{{midia.name}}</h1>
+			<h4>{{midia.linhafina}}</h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<ul id="catList" class="list-inline">
+				<li class="home isNot">
+					<a href="/#/"><strong>Todos os sites</strong></a>
+				</li>
+				<li ng-class="isThisCat('Cidadania e Política')">
+					<a href="/#/categoria/politica">Cidadania e Política</a>
+				</li>
+				<li ng-class="isThisCat('Cultura e Arte')">
+					<a href="/#/categoria/cultura">Cultura e Arte</a>
+				</li>
+				<li ng-class="isThisCat('Meio Ambiente')">
+					<a href="/#/categoria/meioambiente">Meio Ambiente</a>
+				</li>
+				<li ng-class="isThisCat('Gênero')">
+					<a href="/#/categoria/genero">Gênero</a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+	
+	<div class="main-content row" style="position: relative;">
+		<div  id="sidebar" class="sidebar col-sm-4 col-md-3 col-lg-3" >
+			<div  class="sidebar__inner">
+				<div>
+<!--					<h3 ng-bind-html="midia.name"></h3>
+ 					<ul class="">
+						<li ng-repeat="post in ultimosPosts | orderBy:'midia.name'| uniquemidia:'name'"><a href="/#/{{post.midia.slug}}">
+							<h5>{{post.midia.name}}</h5>
+						</a></li>
+					</ul> -->
+
+					<p class="lead">Você está vendo as últimas notícias de <strong>{{sitesCat.length}}</strong> sites listados na categoria <strong>{{midia.name}}</strong>.</p>
+					<ul class="">
+						<li ng-class="isThisCat(site.category)" ng-repeat="site in sites | orderBy: 'name'"><a href="/#/{{site.slug}}">
+							<h5>{{site.name}}</h5>
+						</a></li>
+					</ul>
+					
+				</div>
+			</div>
+				
+		</div>
+		<div class="col-sm-8 col-md-9 col-lg-9">
+			<post-row></post-row>
+		</div>
+	</div>
+	
+</div>

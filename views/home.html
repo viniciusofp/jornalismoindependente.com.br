@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row">
+	</div>
+</div>
+				<!-- Modal -->
+				<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-body">
+							<p class="lead" ng-bind-html="midia.description"></p>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+<div class="container-fluid">
+	<div class="row">
+		<div id="homeHeader" class="col-md-12">
+			<div id="paginaHeader">
+				<h1>jornalismo<br class="visible-xs"><span style="font-weight: 500">independente.com.br</span></h1>
+				<p class="lead">{{midia.linhafina}}</p>
+				<ul class="list-inline">
+					<li>
+						<a href="/#/mapa"><button class="btn btn-default">Ver mapa</button></a>
+					</li>
+					<li>
+						<button  data-toggle="modal" data-target="#myModal" class="btn btn-default">Saiba Mais</button>
+					</li>
+				</ul>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			</div>
+			<ul id="catList" class="list-inline slign-center">
+				<li class="home">
+					<a href="/#/"><strong>Todos os sites</strong></a>
+				</li>
+				<li class="isNot">
+					<a href="/#/categoria/politica">Cidadania e Política</a>
+				</li>
+				<li class="isNot">
+					<a href="/#/categoria/cultura">Cultura e Arte</a>
+				</li>
+				<li class="isNot">
+					<a href="/#/categoria/meioambiente">Meio Ambiente</a>
+				</li>
+				<li class="isNot">
+					<a href="/#/categoria/genero">Gênero</a>
+				</li>
+			</ul>
+		</div>	
+	</div>
+	<div class="main-content row" style="position: relative;">
+		<div  id="sidebar" class="col-sm-4 col-md-3 col-lg-3" >
+			<div  class="sidebar__inner">
+				<div>
+					<p class="lead">Você está vendo as últimas notícias de <strong>{{sites.length}}</strong> sites.</p>
+					<ul class="">
+						<li ng-repeat="site in sites | orderBy: 'name'"><a href="/#/{{site.slug}}">
+							<h5>{{site.name}}</h5>
+						</a></li>
+					</ul>
+					
+				</div>
+			</div>
+				
+		</div>
+		<div class="col-sm-8 col-md-9 col-lg-9">
+			<post-row></post-row>
+		</div>
+	</div>
+	
+</div>
+<script>
+	$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+</script>
