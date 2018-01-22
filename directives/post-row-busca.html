@@ -15,7 +15,7 @@
 	</section>
 	<div class="col-sm-6 col-lg-4 post-wrapper" ng-repeat="post in ultimosPosts | orderBy:'-ranking' track by $index">
 		<div class="post-container">
-			<p class="chapeu"><small><a href="/#/{{post.midia.slug}}"><strong><i class="fa fa-hand-o-right" aria-hidden="true"></i> {{post.midia.name}}</strong></a> | <span ng-bind-html="post.date | date"></span></small></p>
+			<p class="chapeu"><small><a href="https://viniciusofp.github.io/jornalismoindependente.com.br/#/{{post.midia.slug}}"><strong><i class="fa fa-hand-o-right" aria-hidden="true"></i> {{post.midia.name}}</strong></a> | <span ng-bind-html="post.date | date"></span></small></p>
 			<div class="post-img" ng-if="($index + 8) % 10 == 0 && post.featuredmedia.medium.source_url" >
 				<img  ng-src="{{post.featuredmedia.medium.source_url}}" alt="">
 			</div>
