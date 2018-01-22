@@ -15,23 +15,23 @@ app.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   $routeProvider
 	.when('/', {
-    	templateUrl: './views/home.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/home.html',
     	controller: 'Home',
   	})
    	.when('/mapa', {
-    	templateUrl: './views/mapa.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/mapa.html',
     	controller: 'Mapa',
   	})
    	.when('/:source', {
-    	templateUrl: './views/single.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/single.html',
     	controller: 'Single',
   	})
    	.when('/busca/:termo', {
-    	templateUrl: './views/busca.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/busca.html',
     	controller: 'Busca',
   	})
    	.when('/categoria/:catSlug', {
-    	templateUrl: './views/cat.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/cat.html',
     	controller: 'Cat',
   	})
   	.otherwise({
@@ -56,12 +56,12 @@ app.filter('uniquemidia', function() {
 });
 app.directive('postRow', function() {
 	return {
-    	templateUrl: './directives/post-row.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/directives/post-row.html',
   	};
 });
 app.directive('postRowBusca', function() {
 	return {
-    	templateUrl: './directives/post-row-busca.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/directives/post-row-busca.html',
   	};
 });
 app.service('wp', function ($resource, $q, $http) {
