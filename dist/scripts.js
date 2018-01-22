@@ -629,27 +629,27 @@ app.config(function($sceProvider) {
 app.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode({
         enabled: true,
-    }) 
+    })
   $locationProvider.hashPrefix('');
   $routeProvider
 	.when('/', {
-    	templateUrl: 'views/home.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/home.html',
     	controller: 'Home',
   	})
    	.when('/mapa', {
-    	templateUrl: 'views/mapa.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/mapa.html',
     	controller: 'Mapa',
   	})
    	.when('/:source', {
-    	templateUrl: 'views/single.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/single.html',
     	controller: 'Single',
   	})
    	.when('/busca/:termo', {
-    	templateUrl: 'views/busca.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/busca.html',
     	controller: 'Busca',
   	})
    	.when('/categoria/:catSlug', {
-    	templateUrl: 'views/cat.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/views/cat.html',
     	controller: 'Cat',
   	})
   	.otherwise({
@@ -658,7 +658,7 @@ app.config(function($routeProvider, $locationProvider) {
 });
 app.filter('uniquemidia', function() {
    return function(collection, keyname) {
-      var output = [], 
+      var output = [],
           keys = [];
 
       angular.forEach(collection, function(item) {
@@ -674,12 +674,12 @@ app.filter('uniquemidia', function() {
 });
 app.directive('postRow', function() {
 	return {
-    	templateUrl: 'directives/post-row.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/directives/post-row.html',
   	};
 });
 app.directive('postRowBusca', function() {
 	return {
-    	templateUrl: 'directives/post-row-busca.html',
+    	templateUrl: 'https://viniciusofp.github.io/jornalismoindependente.com.br/directives/post-row-busca.html',
   	};
 });
 app.service('wp', function ($resource, $q, $http) {
@@ -744,7 +744,7 @@ app.service('wp', function ($resource, $q, $http) {
 	    s = s.replace(/(^\s*)|(\s*$)/gi,"");//exclude  start and end white-space
 	    s = s.replace(/[ ]{2,}/gi," ");//2 or more space to 1
 	    s = s.replace(/\n /,"\n"); // exclude newline with a start spacing
-	    return s.split(' ').length; 
+	    return s.split(' ').length;
 	}
 
 	function resumoPost (post) {
@@ -787,13 +787,13 @@ app.service('wp', function ($resource, $q, $http) {
 			var posts = $resource( siteLista[i].apiUrl + "posts?per_page=:perpage", { perpage: porPagina, page: paginaAtual} ).query();
 			$q.all([
 			    posts.$promise
-			]).then( function (data) { 
+			]).then( function (data) {
 				var psts = data[0];
 				psts.forEach(function(pst) {
 					setMidia(pst);
 					getImage(pst);
 					// Resumo do post
-					pst.resumo = resumoPost(pst) 
+					pst.resumo = resumoPost(pst)
 					// Readtime
 					var wpm = 200;
 					pst.readtime = countWords(pst.content.rendered) / wpm - (countWords(pst.content.rendered) / wpm) % 1 + 1
@@ -801,17 +801,17 @@ app.service('wp', function ($resource, $q, $http) {
 					var today = new Date();
 					var date_to_reply = new Date(pst.date);
 					var daysFromToday = Math.ceil((today.getTime() - date_to_reply.getTime()) / (1000 * 60 * 60 * 24));
-					
+
 					if (daysFromToday < 365) {
 						results.push(pst);
 					};
 				});
-			
+
 			}).finally(function() {
 				$('#loading').css('display', 'none');
-	 		});		
+	 		});
 		};
-		return results		
+		return results
 	}
 
 	wp.singleSource = function(url, paginaAtual) {
@@ -820,13 +820,13 @@ app.service('wp', function ($resource, $q, $http) {
 		var posts = $resource( url + "posts?per_page=:perpage", { perpage: 9, page: paginaAtual} ).query();
 		$q.all([
 		    posts.$promise
-		]).then( function (data) { 
+		]).then( function (data) {
 			var psts = data[0];
 			psts.forEach(function(pst) {
 				setMidia(pst);
 				getImage(pst);
 				// Resumo do post
-				pst.resumo = resumoPost(pst) 
+				pst.resumo = resumoPost(pst)
 				// Readtime
 				var wpm = 200;
 				pst.readtime = countWords(pst.content.rendered) / wpm - (countWords(pst.content.rendered) / wpm) % 1 + 1
@@ -834,7 +834,7 @@ app.service('wp', function ($resource, $q, $http) {
 				var today = new Date();
 				var date_to_reply = new Date(pst.date);
 				var daysFromToday = Math.ceil((today.getTime() - date_to_reply.getTime()) / (1000 * 60 * 60 * 24));
-				
+
 				results.push(pst);
 				//Sort
 				results.sort(function(a, b){
@@ -848,10 +848,10 @@ app.service('wp', function ($resource, $q, $http) {
 			});
 		}).finally(function() {
 			$('#loading').css('display', 'none');
-	  });	
-		return results		
+	  });
+		return results
 	}
-	
+
 	wp.busca = function (termo, paginaAtual) {
 		var results = [];
     var termos = termo.toLowerCase().split(' ');
@@ -863,11 +863,11 @@ app.service('wp', function ($resource, $q, $http) {
 			var posts = $resource( wp.sites[i].apiUrl + "posts?search=:buscatermo&per_page=:perpage&page=:page", { buscatermo: termo.toLowerCase(), perpage: 5, page: paginaAtual} ).query()
 			$q.all([
 			    posts.$promise
-			]).then( function (data) { 
+			]).then( function (data) {
 				var psts = data[0];
 				var siteResults = [];
 				psts.forEach(function(pst) {
-					
+
 					setMidia(pst);
 
 					getImage(pst);
@@ -878,7 +878,7 @@ app.service('wp', function ($resource, $q, $http) {
             var occContent = occurrences(pst.content.rendered.toLowerCase(), ' ' + pTermo.toLowerCase() + ' ', true);
             var occExcerpt = occurrences(pst.resumo.toLowerCase(), ' ' + pTermo.toLowerCase() + ' ', true);
             var occTitle = occurrences(pst.title.rendered.toLowerCase(), ' ' + pTermo.toLowerCase() + ' ', true);
-            
+
             pst.occ[pTermo] = {
               title: occTitle,
               content: occContent,
@@ -898,7 +898,7 @@ app.service('wp', function ($resource, $q, $http) {
           pst.ranking = pst.occ;
 					pst.relevancia = pst.relevancia - daysFromToday * 0.01;
           if (pst.relevancia > 0) {siteResults.push(pst);}
-					
+
 				});
 				// results.push(siteResults)
 				Array.prototype.push.apply(results, siteResults);
@@ -939,13 +939,13 @@ app.controller('MainCtrl', ['$scope', '$q', 'wp','$location', function($scope, $
 	$scope.sitesCultura = wp.sitesCultura;
 	$scope.sitesGenero = wp.sitesGenero;
 	$scope.sitesPolitica = wp.sitesPolitica;
-	$scope.sitesMeioAmbiente = wp.sitesMeioAmbiente;	
+	$scope.sitesMeioAmbiente = wp.sitesMeioAmbiente;
 
-	
+
 
   $scope.buscaPosts = []
 
-	
+
   $scope.closeMenu = function() {
 		$('#sections-nav').removeClass('navOpen');
 		$('#wrapper').removeClass('navOpen');
@@ -969,7 +969,7 @@ app.controller('MainCtrl', ['$scope', '$q', 'wp','$location', function($scope, $
   }
 
 
-  $scope.$on("$routeChangeSuccess", 
+  $scope.$on("$routeChangeSuccess",
     function (event, current, previous, rejection) {
 
        setTimeout(function() {
@@ -978,7 +978,7 @@ app.controller('MainCtrl', ['$scope', '$q', 'wp','$location', function($scope, $
           innerWrapperSelector: '.sidebar__inner',
         });
       }, 2500);
-      
+
   });
 
 	$scope.setPosts = function (getPosts) {
@@ -1083,7 +1083,7 @@ app.controller('Single', ['$scope', '$q', 'wp', '$routeParams', function($scope,
           scrollwheel: false,
           mapTypeControl: false,
         });
-       
+
     	var marker = new google.maps.Marker({
           position: {lat: $scope.midia.lat, lng: $scope.midia.lng},
           map: map,
